@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
       - name: container2
-        image: andymesser/easy-hw-logger:v0.3
+        image: andymesser/easy-hw-logger:v0.5
         volumeMounts:
         - name: local-volume
           mountPath: /app/data

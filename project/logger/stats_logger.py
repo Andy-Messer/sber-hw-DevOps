@@ -1,7 +1,7 @@
 import requests
 import time
 
-url = 'http://localhost:8000/statistics/'
+url = 'http://my-pod-service:8000/statistics/'
 output_file = 'data/logstats.txt'
 
 def log_stat():
@@ -10,6 +10,7 @@ def log_stat():
         response = requests.get(url)
         if response.status_code == 200:
             with open(output_file, 'a') as f:
+                print(str(response.json()['statistics']))
                 f.write(str(response.json()['statistics']) + '\n')
         else:
             print('Bad endpoint :(')
