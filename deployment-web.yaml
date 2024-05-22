@@ -2,19 +2,13 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: my-pod
+  labels:
+    app: my-pod
 spec:
   containers:
   - name: container1
     image: andymesser/easy-hw-project:v0.1
     ports:
     - containerPort: 8000
-  - name: container2
-    image: andymesser/easy-hw-logger:v0.2
-    volumeMounts:
-    - name: local-volume
-      mountPath: /app/data
-  volumes:
-  - name: local-volume
-    hostPath:
-      path: /data
-      type: DirectoryOrCreate
+      protocol: TCP
+      name: http

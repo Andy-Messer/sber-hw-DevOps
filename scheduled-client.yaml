@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-one-shot-task
+spec:
+  template:
+    spec:
+      containers:
+      - name: container2
+        image: andymesser/easy-hw-logger:v0.3
+        volumeMounts:
+        - name: local-volume
+          mountPath: /app/data
+        env:
+        - name: POD_HOST
+          value: "my-pod-service"
+      volumes:
+      - name: local-volume
+        hostPath:
+          path: /data
+          type: DirectoryOrCreate
+      restartPolicy: OnFailure

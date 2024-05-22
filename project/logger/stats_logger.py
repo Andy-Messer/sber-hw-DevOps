@@ -16,7 +16,4 @@ def log_stat():
     except:
         print('Bedi with Internet connection')
         
-while True:
-    log_stat()
-    print('ping')
-    time.sleep(5)
+log_stat()
