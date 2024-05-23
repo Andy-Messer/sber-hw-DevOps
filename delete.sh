@@ -1,5 +1,5 @@
 #!/bin/bash
 
-kubectl delete pod my-pod
-kubectl delete service my-pod-service
-kubectl delete job my-one-shot-task
+kubectl delete deployment app-deployment
+kubectl delete service app-service
+kubectl delete deployment statistics-client

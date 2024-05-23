@@ -1,22 +1,27 @@
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
-  name: my-one-shot-task
+  name: script-cronjob
 spec:
-  template:
+  schedule: "* * * * *"
+  jobTemplate:
     spec:
-      containers:
-      - name: container2
-        image: andymesser/easy-hw-logger:v0.5
-        volumeMounts:
-        - name: local-volume
-          mountPath: /app/data
-        env:
-        - name: POD_HOST
-          value: "my-pod-service"
-      volumes:
-      - name: local-volume
-        hostPath:
-          path: /data
-          type: DirectoryOrCreate
-      restartPolicy: OnFailure
+      template:
+        metadata:
+          labels:
+            app: script-cronjob
+        spec:
+          containers:
+          - name: container2
+            image: andymesser/easy-hw-logger:v1.3
+            volumeMounts:
+            - name: local-volume
+              mountPath: /app/data
+          restartPolicy: OnFailure
+          volumes:
+          - name: local-volume
+            hostPath:
+              path: /data
+              type: DirectoryOrCreate
+
+        
