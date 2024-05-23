@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: script-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: script-cronjob
+        spec:
+          containers:
+          - name: container2
+            image: andymesser/easy-hw-logger:v1.3
+            volumeMounts:
+            - name: local-volume
+              mountPath: /app/data
+          restartPolicy: OnFailure
+          volumes:
+          - name: local-volume
+            hostPath:
+              path: /data
+              type: DirectoryOrCreate
+
+        

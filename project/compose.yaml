@@ -1,0 +1,10 @@
+services:
+  web:
+    pull_policy: build
+    build:
+      context: app
+      target: builder
+    image: andymesser/easy-project:latest
+    tty: true
+    ports:
+      - 8000:8000
